@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大字报生成器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffebee; /* 浅红色背景 */
+            font-family: Arial, sans-serif;
+            color: #b71c1c; /* 深红色文字 */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #FBF12D; /* 黄色背景 */
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(183, 28, 28, 0.2);
+            padding: 40px;
+            text-align: center;
+            border: 3px solid #f44336; /* 红色边框 */
+        }
+
+        h1 {
+            color: #d32f2f; /* 红色标题 */
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #e65100; /* 橙色标签 */
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ff9800; /* 橙色边框 */
+            border-radius: 8px;
+            background-color: #fffde7; /* 更浅的黄色 */
+            font-size: 1rem;
+            color: #b71c1c;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #f44336; /* 红色聚焦边框 */
+        }
+
+        button {
+            background-color: #f44336; /* 红色按钮 */
+            color: #fffde7; /* 浅黄色文字 */
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #d32f2f; /* 深红色悬停 */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(183, 28, 28, 0.3);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #fffde7;
+            background-color: #d32f2f; /* 红色footer背景 */
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            box-shadow: 0 -4px 10px rgba(183, 28, 28, 0.2);
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>大字报生成器</h1>
+        <form action="{% url 'dzb' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit" name="submit">确认生成</button>
+        </form>
+    </div>
+<a href="{% url 'ys' %}">预设</a>
+    <footer>
+        
+        <p>Ministry of Industy and Imformatization|All rights reserved</p>
+    </footer>
+</body>
+</html>

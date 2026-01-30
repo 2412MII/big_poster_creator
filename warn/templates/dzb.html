@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大字报</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .warning-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 900px; /* 稍微增加最大宽度 */
+            width: 100%;
+        }
+        
+        .warning-banner {
+            background-color: #ff0000;
+            color: #ffcc00;
+            text-align: center;
+            padding: 70px 50px; /* 增加内边距 */
+            border-radius: 25px; /* 增加圆角 */
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+            width: 100%;
+            margin-bottom: 30px;
+            border: 20px solid #cc0000; /* 增加红框宽度：从15px增加到20px */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .warning-text {
+            font-size: 6.5rem; /* 增大黄色文字：从5.5rem增加到6.5rem */
+            font-weight: 900;
+            letter-spacing: 6px; /* 增加字间距 */
+            text-shadow: 4px 4px 0 #cc0000; /* 增加阴影效果 */
+            line-height: 1.1; /* 调整行高 */
+        }
+        
+        .warning-subtitle {
+            font-size: 2rem; /* 增大副标题：从1.8rem增加到2rem */
+            margin-top: 25px; /* 增加上边距 */
+            color: #fff;
+            background-color: rgba(204, 0, 0, 0.7);
+            padding: 12px 25px; /* 增加内边距 */
+            border-radius: 12px; /* 增加圆角 */
+            font-weight: bold;
+        }
+        
+        .explanation {
+            background-color: white;
+            padding: 30px; /* 增加内边距 */
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .explanation h2 {
+            color: #cc0000;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #ffcc00;
+            padding-bottom: 8px;
+        }
+        
+        .explanation p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .explanation ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .explanation li {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        
+        .responsive-note {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+        }
+        
+	</style>
+</head>
+<body>
+    <div class="warning-container">
+        
+        <div class="warning-banner">
+            <div class="warning-text">{{cont}}</div>
+        </div>
+        
+        <div class="explanation">
+   {%if stu%}         
+<h2>请{{stu}}同学注意以上内容</h2>
+{%endif%}
+	<h2>什么时间{{cont}}？</h2>
+            
+            <ul>
+                <li><strong>午休时间</strong> - 因为要休息</li>
+                <li><strong>18:50后</strong> - 练字时间</li>
+                <li><strong>自习课</strong> - 保持安静的学习环境</li>
+            </ul>
+            <h2>不遵守上述内容有什么后果？</h2>
+             <ul>
+                    <li>不遵守上述内容者将移交<span style="color: red;">桂林市第十八中学革命委员会</span>处理</li>
+             </ul>
+
+            <p class="responsive-note">O(∩_∩)O</p>
+        </div>
+    </div>
+
+    <script>
+        // 添加一些简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const warningBanner = document.querySelector('.warning-banner');
+            
+            // 鼠标悬停效果
+            warningBanner.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            warningBanner.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+            
+            // 点击效果
+            warningBanner.addEventListener('click', function() {
+                this.style.boxShadow = '0 5px 15px rgba(255, 0, 0, 0.5)';
+                setTimeout(() => {
+                    this.style.boxShadow = '0 10px 30px rgba(255, 0, 0, 0.3)';
+                }, 300);
+                
+                // 显示提醒
+                alert('请遵守规定，{{cont}}！');
+            });
+            
+            // 动态更新页面标题的时间
+            const originalTitle = document.title;
+            let blink = false;
+            
+            setInterval(() => {
+                if (blink) {
+                    document.title = "⚠️ " + originalTitle;
+                } else {
+                    document.title = originalTitle;
+                }
+                blink = !blink;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
